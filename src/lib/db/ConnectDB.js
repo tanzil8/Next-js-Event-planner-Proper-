@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-export async function ConnectDB() {
+export async function connectDB() {
   try{
 let connext = await mongoose.connect(process.env.MONGODB_URL)
-console.log('connext',connext);
+console.log("mongodb connected  ");
 
   }
   catch(err){

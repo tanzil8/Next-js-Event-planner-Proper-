@@ -1,28 +1,19 @@
+
 import mongoose from 'mongoose'
+const { Schema } = mongoose;
 
-const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, 'Please provide a name'],
-        maxlength: [60, 'Name cannot be more than 60 characters'],
+const userSchema = new Schema({
+    fullname: String,
+    email: String,
+    Password: String,
+    location:{
+        lat: Number,
+        long: Number
     },
-    email: {
-        type: String,
-        required: [true, 'Please provide an email'],
-        unique: true,
-        lowercase: true,
-        validate: {
-            validator: function(v) {
-                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v)
-            },
-            message: 'Please enter a valid email'
-        },
-    },
-    password: {
-        type: String,
-        required: [true, 'Please provide a password'],
-        minlength: [6, 'Password must be at least 6 characters long'],
-    },
-}, { timestamps: true })
+    profileImg: String,
+    address: String,
+    bio: String
 
+    
+  });
 export const UserModels = mongoose.models.User || mongoose.model('User', userSchema)
