@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const categoriesSchema = new Schema({
-  title: String,
-  description: String,
-  thumbnail: String,
+  title: {type: String, required: true},
+  description: {type: String, required: true},
+  thumbnail: {type: String},
   
 });
 
 
-export const CategoriesModels = mongoose.model('Categories', categoriesSchema);
+export const CategoriesModels = mongoose.model.Categories || mongoose.model('Categories', categoriesSchema);
