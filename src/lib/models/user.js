@@ -12,7 +12,8 @@ const userSchema = new Schema({
     },
     profileImg: String,
     address: String,
-    bio: String
+    bio: String,
+    role: {type : String, default : "user" , enum: [ 'admin', 'user']}
 
     
   });

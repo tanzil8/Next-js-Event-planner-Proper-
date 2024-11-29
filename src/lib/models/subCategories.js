@@ -11,4 +11,4 @@ const subCategoriesSchema = new Schema({
 });
 
 
-export const SubCategoriesModels = mongoose.model('subCategories', subCategoriesSchema); 
+export const SubCategoriesModels = mongoose.models.subCategories || mongoose.model('subCategories', subCategoriesSchema); 

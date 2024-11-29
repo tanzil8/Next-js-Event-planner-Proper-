@@ -9,4 +9,8 @@ const categoriesSchema = new Schema({
 });
 
 
-export const CategoriesModels = mongoose.model.Categories || mongoose.model('Categories', categoriesSchema);
+
+
+
+
+export const CategoriesModels = mongoose.models.Categories || mongoose.model('Categories', categoriesSchema); 
