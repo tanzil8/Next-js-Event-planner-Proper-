@@ -1,12 +1,19 @@
-'use client'
+
 
 import * as React from 'react'
 
 import Navbar from '@/components/ui/nav/nav'
+import { auth } from '../../../../auth'
+import { redirect } from 'next/navigation'
 
 
-export default function Layout({ children }) {
+export default async function  Layout({ children }) {
   
+  const session = await auth()
+  console.log("session",session)
+  if (!session) {
+    redirect("/signin")
+  }
 
   return (
     <div className="flex flex-col min-h-screen">

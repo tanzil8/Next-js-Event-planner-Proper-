@@ -3,7 +3,10 @@
 
 import React from 'react';
 
-const Admin = () => {
+
+const Admin =  async () => {
+ 
+ 
   return (
     <div>Admin</div>
   );

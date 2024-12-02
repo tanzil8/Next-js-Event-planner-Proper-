@@ -1,8 +1,7 @@
 import { connectDB } from "@/lib/db/ConnectDB";
 import { UserModels } from "@/lib/models/user";
-import { AutoAwesomeMosaicTwoTone } from "@mui/icons-material";
 import    bcrypt  from "bcrypt";
-
+import jwt from "jsonwebtoken"
 
 
 export async function GET(request) {
@@ -26,11 +25,14 @@ if(user) return Response.json({error: true, msg: "user already exist"}, {status:
    console.log("saltRounds=>",saltRounds)
    const  PasswordHash = await bcrypt.hash(obj.Password, saltRounds)
    obj.Password = PasswordHash;
+   let newUser = new UserModels(obj)
+      await newUser.save()
+   var token = jwt.sign({ _id : newUser._id, rele: newUser.role }, process.env.JWT_KEY);
+
+
    console.log('obj', obj)
 
-// let newUser = new UserModels(obj)
-//    await newUser.save()
-   return Response.json({masg: 'user add success full', newUser: {} }, {status: 201})
+   return Response.json({masg: 'user add success full', newUser: newUser, token }, {status: 201})
 
 }
  
