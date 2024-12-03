@@ -1,7 +1,18 @@
-import { signIn } from "../../../auth"
+import { redirect } from "next/navigation"
+import { auth, signIn } from "../../../auth"
 
  
-export default function SignIn() {
+export default async function SignIn() {
+  const session = await auth()
+ console.log('sessionnn',session)
+ if (session) {
+  if (session.user.role == 'user') {
+    redirect('/')
+  }else if (session.user.role == 'admin') {
+    redirect('/admin/dashboard')
+  
+  }
+ }
   return (
       <form
       action={async () => {

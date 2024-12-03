@@ -11,9 +11,15 @@ export default async function  Layout({ children }) {
   
   const session = await auth()
   console.log("session",session)
+
+
   if (!session) {
     redirect("/signin")
   }
+  if (session.user.role == 'user') {
+    redirect('/')
+  }
+
 
   return (
     <div className="flex flex-col min-h-screen">
